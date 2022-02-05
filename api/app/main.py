@@ -13,7 +13,7 @@ class FileType(Enum):
    image: str = 'IMAGE'
    default: str = 'DEFAULT'
 
-BASE_PATH = '/mnt/data/storage'
+BASE_PATH = '/mnt/data'
 IMAGE_PATH = os.path.join(BASE_PATH, FileType.image.value)
 DEFAULT_PATH = os.path.join(BASE_PATH, FileType.default.value)
 os.makedirs(IMAGE_PATH, exist_ok=True)
@@ -23,7 +23,7 @@ os.makedirs(DEFAULT_PATH, exist_ok=True)
 app = FastAPI()
 
 app.add_middleware(
-    CORSMiddleware
+    CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
