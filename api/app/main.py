@@ -1,8 +1,10 @@
 import io
 import os
 from fastapi import FastAPI, HTTPException, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response, FileResponse
 from typing import List
+import json
 
 from enum import Enum
 
@@ -11,7 +13,7 @@ class FileType(Enum):
    image: str = 'IMAGE'
    default: str = 'DEFAULT'
 
-BASE_PATH = '/mnt/data'
+BASE_PATH = '/mnt/data/storage'
 IMAGE_PATH = os.path.join(BASE_PATH, FileType.image.value)
 DEFAULT_PATH = os.path.join(BASE_PATH, FileType.default.value)
 os.makedirs(IMAGE_PATH, exist_ok=True)
@@ -19,6 +21,14 @@ os.makedirs(DEFAULT_PATH, exist_ok=True)
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 @app.get("/")
 def root():
