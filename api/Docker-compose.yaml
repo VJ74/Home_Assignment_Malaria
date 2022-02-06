@@ -2,7 +2,7 @@ services: # Contain all the Docker services you want to start
     api: # Create a service called `api`
         build: # Make sure to build the Docker image if it does not exist ...
             context: .
-        image: ghcr.io/vj74/fastapi-malaria:v1 # Name it `fastapi-intro`
+        image: ghcr.io/vj74/fastapi-malaria:v2 # Name it `fastapi-intro`
         ports: # Enter a list of all the ports that should be mapped
             - 9999:9999 # Map port on our VIRTUAL MACHINE to port on our DOCKER CONTAINER
         volumes:

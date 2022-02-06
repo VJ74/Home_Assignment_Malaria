@@ -1,2 +1,3 @@
 Fastapi[all]
 Tensorflow
+Scikit-image
